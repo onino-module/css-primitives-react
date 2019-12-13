@@ -1,26 +1,62 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Input from "./components/Input/Input";
+import Button from "./components/Button/Button";
+import LoadingButton from "./components/LoadingButton/LoadingButton";
 
-const App: React.FC = () => {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+interface Props {}
+
+interface State {
+  loading: boolean;
+}
+
+class App extends React.Component<Props, State> {
+  public state = {
+    loading: false
+  };
+
+  private clickLoad = () => {
+    this.setState(
+      {
+        loading: true
+      },
+      () => {
+        window.setTimeout(() => this.setState({ loading: false }), 3000);
+      }
+    );
+  };
+
+  render() {
+    return (
+      <div>
+        <div>
+          <Button label="BUTTON" />
+          <Button label="BUTTON" color="secondary" />
+          <Button label="BUTTON" color="warning" />
+          <Button label="BUTTON" color="danger" />
+          <Button label="BUTTON" color="success" />
+          <Button label="BUTTON" color="success" disabled />
+        </div>
+        <div>
+          <LoadingButton label="loading button" loading={true} />
+          <LoadingButton
+            label="loading button"
+            loading={true}
+            color="secondary"
+          />
+          <LoadingButton label="loading button" loading={true} color="warning" />
+          <LoadingButton label="loading button" loading={true} color="danger"/>
+          <LoadingButton label="loading button" loading={true} color="success"/>
+        </div>
+        <div>
+          <LoadingButton
+            label="TRY ME"
+            loading={this.state.loading}
+            onClick={this.clickLoad}
+          />
+        </div>
+      </div>
+    );
+  }
 }
 
 export default App;
