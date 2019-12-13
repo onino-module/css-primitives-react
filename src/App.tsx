@@ -2,16 +2,20 @@ import React from "react";
 import Input from "./components/Input/Input";
 import Button from "./components/Button/Button";
 import LoadingButton from "./components/LoadingButton/LoadingButton";
+import Modal from "./components/Modal/Modal";
+import Drawer from "./components/Drawer/Drawer";
 
 interface Props {}
 
 interface State {
   loading: boolean;
+  showModal: boolean;
 }
 
 class App extends React.Component<Props, State> {
   public state = {
-    loading: false
+    loading: false,
+    showModal:false
   };
 
   private clickLoad = () => {
@@ -25,10 +29,22 @@ class App extends React.Component<Props, State> {
     );
   };
 
+  private toggleModal = () => {
+    this.setState({
+      showModal:!this.state.showModal
+    })
+  }
+
+  private closeModal = () => {
+    this.setState({
+      showModal: false
+    })
+  }
+
   render() {
     return (
       <div>
-        <div>
+        {/* <div>
           <Button label="BUTTON" />
           <Button label="BUTTON" color="secondary" />
           <Button label="BUTTON" color="warning" />
@@ -43,9 +59,17 @@ class App extends React.Component<Props, State> {
             loading={true}
             color="secondary"
           />
-          <LoadingButton label="loading button" loading={true} color="warning" />
-          <LoadingButton label="loading button" loading={true} color="danger"/>
-          <LoadingButton label="loading button" loading={true} color="success"/>
+          <LoadingButton
+            label="loading button"
+            loading={true}
+            color="warning"
+          />
+          <LoadingButton label="loading button" loading={true} color="danger" />
+          <LoadingButton
+            label="loading button"
+            loading={true}
+            color="success"
+          />
         </div>
         <div>
           <LoadingButton
@@ -53,7 +77,15 @@ class App extends React.Component<Props, State> {
             loading={this.state.loading}
             onClick={this.clickLoad}
           />
-        </div>
+        </div> */}
+        {/* <Input label="Nom de famille" /> */}
+        <button onClick={this.toggleModal} >toggle modal</button>
+        {/* <Modal show={this.state.showModal} close={this.closeModal}>
+          Modal Content
+        </Modal> */}
+        <Drawer show={this.state.showModal} close={this.closeModal} overlay>
+          Drawer Content <span style={{cursor:"pointer"}} onClick={this.closeModal}>X</span>
+        </Drawer>
       </div>
     );
   }
