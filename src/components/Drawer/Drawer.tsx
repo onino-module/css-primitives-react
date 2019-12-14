@@ -1,5 +1,6 @@
 import React from "react";
-import style from "./Drawer.module.css";
+import classNames from "classnames/bind";
+import styles from "./Drawer.module.css";
 interface IDrawerProps {
   show?: boolean;
   close?: () => void;
@@ -8,18 +9,26 @@ interface IDrawerProps {
 
 const OVERLAY_DEFAULT = true;
 
+let cx = classNames.bind(styles);
+
 const Drawer: React.FC<IDrawerProps> = ({
   show,
   close,
   children,
   overlay = OVERLAY_DEFAULT
 }) => {
-  let containerClasses = style.container;
-  show && (containerClasses = containerClasses.concat(" " + style.active));
-  let overlaylasses = style["click-layer"];
-  show && (overlaylasses = overlaylasses.concat(" " + style.active));
-  let contentlasses = style["drawer-content"];
-  show && (contentlasses = contentlasses.concat(" " + style.active));
+  let containerClasses = cx({
+    "container": true,
+    "active": show
+  })
+  let overlaylasses = cx({
+    "click-layer": true,
+    "active": show
+  })
+  let contentlasses = cx({
+    "drawer-content": true,
+    "active": show
+  })
   return (
     <React.Fragment>
       <div className={containerClasses}>

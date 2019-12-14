@@ -1,5 +1,6 @@
 import React from "react";
-import style from "./LoadingButton.module.css";
+import classNames from "classnames/bind";
+import styles from "./LoadingButton.module.css";
 
 interface ILoadingButtonProps {
   label: string;
@@ -13,22 +14,31 @@ const ON_CLICK_DEFAULT = () => {};
 const COLOR_DEFAULT = "primary";
 const LOADING_DEFAULT = false;
 
+let cx = classNames.bind(styles);
+
 const LoadingButton: React.FC<ILoadingButtonProps> = ({
-    label = LABEL_DEFAULT,
-    onClick = ON_CLICK_DEFAULT,
-    color = COLOR_DEFAULT,
-    loading = LOADING_DEFAULT
-  }) => {
-  const button_classes = style.button.concat(" " + style[color]);
-  let spin_classes = style.spin
-  let spin_container__classes = style["spin-container"]
-  loading && (spin_classes = spin_classes.concat(" " + style.active))
-  loading && (spin_container__classes = spin_container__classes.concat(" " + style.active))
+  label = LABEL_DEFAULT,
+  onClick = ON_CLICK_DEFAULT,
+  color = COLOR_DEFAULT,
+  loading = LOADING_DEFAULT
+}) => {
+  const buttonClasses = cx({
+    button: true,
+    [color]: true
+  });
+  let spinContainerClasses = cx({
+    "spin-container": true,
+    active: loading
+  });
+  let spinClasses = cx({
+    spin: true,
+    active: loading
+  });
   return (
-    <button className={button_classes} onClick={onClick}>
+    <button className={buttonClasses} onClick={onClick}>
       {label}
-      <div className={spin_container__classes}>
-       <div className={spin_classes}/>
+      <div className={spinContainerClasses}>
+        <div className={spinClasses} />
       </div>
     </button>
   );

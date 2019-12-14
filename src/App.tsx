@@ -4,18 +4,22 @@ import Button from "./components/Button/Button";
 import LoadingButton from "./components/LoadingButton/LoadingButton";
 import Modal from "./components/Modal/Modal";
 import Drawer from "./components/Drawer/Drawer";
+import Switch from "./components/Switch/Switch";
+import Select from "./components/Select/Select";
 
 interface Props {}
 
 interface State {
   loading: boolean;
   showModal: boolean;
+  showDrawer: boolean;
 }
 
 class App extends React.Component<Props, State> {
   public state = {
     loading: false,
-    showModal:false
+    showModal:false,
+    showDrawer:false
   };
 
   private clickLoad = () => {
@@ -35,16 +39,28 @@ class App extends React.Component<Props, State> {
     })
   }
 
+  private toggleDrawer = () => {
+    this.setState({
+      showDrawer:!this.state.showDrawer
+    })
+  }
+
   private closeModal = () => {
     this.setState({
       showModal: false
     })
   }
 
+  private closeDrawer = () => {
+    this.setState({
+      showDrawer: false
+    })
+  }
+
   render() {
     return (
       <div>
-        {/* <div>
+        <div>
           <Button label="BUTTON" />
           <Button label="BUTTON" color="secondary" />
           <Button label="BUTTON" color="warning" />
@@ -77,15 +93,36 @@ class App extends React.Component<Props, State> {
             loading={this.state.loading}
             onClick={this.clickLoad}
           />
-        </div> */}
+        </div>
         {/* <Input label="Nom de famille" /> */}
-        <button onClick={this.toggleModal} >toggle modal</button>
-        {/* <Modal show={this.state.showModal} close={this.closeModal}>
+        <Button onClick={this.toggleModal} label="TOGGLE MODAL"/>
+        <Button onClick={this.toggleDrawer} label="TOGGLE DRAWER"/>
+        <Modal show={this.state.showModal} close={this.closeModal}>
           Modal Content
-        </Modal> */}
-        <Drawer show={this.state.showModal} close={this.closeModal} overlay>
+        </Modal>
+        <Switch onToggle={console.log}/>
+        <Switch color="secondary" defaultChecked={true}/>
+        <Switch color="warning"/>
+        <Switch color="danger"/>
+        <Switch color="success" checked={true} />
+        <Drawer show={this.state.showDrawer} close={this.closeDrawer} overlay>
           Drawer Content <span style={{cursor:"pointer"}} onClick={this.closeModal}>X</span>
         </Drawer>
+        <Input label="first name"/>
+        <Select options={[
+          {
+            label : "options 1",
+            value : 0
+          },
+          {
+            label : "options 2",
+            value : 1
+          },
+          {
+            label : "options 3",
+            value : 2
+          }
+        ]} />
       </div>
     );
   }

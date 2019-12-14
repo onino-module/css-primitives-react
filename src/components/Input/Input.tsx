@@ -1,5 +1,5 @@
 import React, { ChangeEvent } from "react";
-import style from "./Input.module.css";
+import styles from "./Input.module.css";
 interface IInputProps {
   label: string;
   color?: "primary" | "secondary" | "warning" | "danger" | "success";
@@ -20,10 +20,10 @@ const Input: React.FC<IInputProps> = ({
   value
 }) => {
   return (
-    <div className={style.container} style={{width}}>
+    <div className={styles.container} style={{width}}>
       <input type="text" onChange={onChange} required value={value} />
-      <label className={style.label}>
-        <span className={style["content-name"]}>{label}</span>
+      <label className={styles.label}>
+        <span className={styles["content-name"]}>{label}</span>
       </label>
     </div>
   );

@@ -1,18 +1,27 @@
 import React from "react";
-import style from "./LoadingButton.module.css";
+import classNames from "classnames/bind";
+import styles from "./LoadingButton.module.css";
 const LABEL_DEFAULT = "";
 const ON_CLICK_DEFAULT = () => { };
 const COLOR_DEFAULT = "primary";
 const LOADING_DEFAULT = false;
+let cx = classNames.bind(styles);
 const LoadingButton = ({ label = LABEL_DEFAULT, onClick = ON_CLICK_DEFAULT, color = COLOR_DEFAULT, loading = LOADING_DEFAULT }) => {
-    const button_classes = style.button.concat(" " + style[color]);
-    let spin_classes = style.spin;
-    let spin_container__classes = style["spin-container"];
-    loading && (spin_classes = spin_classes.concat(" " + style.active));
-    loading && (spin_container__classes = spin_container__classes.concat(" " + style.active));
-    return (React.createElement("button", { className: button_classes, onClick: onClick },
+    const buttonClasses = cx({
+        button: true,
+        [color]: true
+    });
+    let spinContainerClasses = cx({
+        "spin-container": true,
+        active: loading
+    });
+    let spinClasses = cx({
+        spin: true,
+        active: loading
+    });
+    return (React.createElement("button", { className: buttonClasses, onClick: onClick },
         label,
-        React.createElement("div", { className: spin_container__classes },
-            React.createElement("div", { className: spin_classes }))));
+        React.createElement("div", { className: spinContainerClasses },
+            React.createElement("div", { className: spinClasses }))));
 };
 export default LoadingButton;
