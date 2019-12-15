@@ -91,6 +91,34 @@
         "origin": "AUTHORED",
         "exported": true
     },
+    "onino-js.css-primitives/select@0.0.1": {
+        "files": [
+            {
+                "relativePath": "src/components/Select/Select.module.css",
+                "test": false,
+                "name": "Select.module.css"
+            },
+            {
+                "relativePath": "src/components/Select/Select.tsx",
+                "test": false,
+                "name": "Select.tsx"
+            },
+            {
+                "relativePath": "src/components/Select/SelectArrow.tsx",
+                "test": false,
+                "name": "SelectArrow.tsx"
+            },
+            {
+                "relativePath": "src/components/Select/SelectCross.tsx",
+                "test": false,
+                "name": "SelectCross.tsx"
+            }
+        ],
+        "mainFile": "src/components/Select/Select.tsx",
+        "trackDir": "src/components/Select",
+        "origin": "AUTHORED",
+        "exported": true
+    },
     "onino-js.css-primitives/switch@0.0.2": {
         "files": [
             {

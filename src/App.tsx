@@ -6,6 +6,7 @@ import Modal from "./components/Modal/Modal";
 import Drawer from "./components/Drawer/Drawer";
 import Switch from "./components/Switch/Switch";
 import Select from "./components/Select/Select";
+import Menu from "./components/Menu/Menu";
 
 interface Props {}
 
@@ -123,6 +124,20 @@ class App extends React.Component<Props, State> {
             value : 2
           }
         ]} />
+        <Menu items={[
+          {
+            label : "options 1",
+            value : 0
+          },
+          {
+            label : "options 2",
+            value : 1
+          },
+          {
+            label : "options 3",
+            value : 2
+          }
+        ]}/>
       </div>
     );
   }
